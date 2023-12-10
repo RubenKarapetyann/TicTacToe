@@ -1,0 +1,19 @@
+{
+  "name": "tictactoe",
+  "version": "1.0.0",
+  "description": "Tic Tac Toe online with friends or random opponents.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/RubenKarapetyann/TicTacToe.git"
+  },
+  "author": "RubenKarapetyann",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/RubenKarapetyann/TicTacToe/issues"
+  },
+  "homepage": "https://github.com/RubenKarapetyann/TicTacToe#readme"
+}
