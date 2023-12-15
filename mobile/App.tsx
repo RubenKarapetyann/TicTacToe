@@ -1,13 +1,10 @@
-import { StyleSheet, View } from 'react-native'
+import { NavigationContainer } from '@react-navigation/native'
+import RootStack from './navigation/RootStackNavigation'
 
 export default function App() {
   return (
-    <View>
-
-    </View>
+    <NavigationContainer>
+      <RootStack/>
+    </NavigationContainer>
   )
 }
-
-const styles = StyleSheet.create({
-
-})
