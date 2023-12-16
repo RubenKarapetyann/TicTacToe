@@ -1,3 +1,6 @@
+import Collection from "../../screens/manu-screens/Collection"
+import Fight from "../../screens/manu-screens/Fight"
+import Shop from "../../screens/manu-screens/Shop"
 import { ITabItem } from "../../types/navigation/global"
 
 export const FIGHT = "Fight"
@@ -6,16 +9,16 @@ export const FIGHT_OBJECT: ITabItem = {
     displayName : "бой",
     icon : "sword-cross",
     id : 1,
-    screen : ()=>undefined
+    screen : Fight
 }
 
 export const SHOP = "Shop"
 export const SHOP_OBJECT: ITabItem = {
     name : SHOP,
     displayName : "магазин",
-    icon : "shop",
+    icon : "shopping",
     id : 2,
-    screen : ()=>undefined
+    screen : Shop
 }
 
 
@@ -25,7 +28,12 @@ export const COLLECTION_OBJECT: ITabItem = {
     displayName : "коллекция",
     icon : "cards",
     id : 3,
-    screen : ()=>undefined
+    screen : Collection
 }
 
 export const MANU_TABS_ARR: ITabItem[] = [ SHOP_OBJECT, FIGHT_OBJECT, COLLECTION_OBJECT ]
+export const MANU_TABS_MAP = {
+    [SHOP] : SHOP_OBJECT,
+    [FIGHT] : FIGHT_OBJECT,
+    [COLLECTION] : COLLECTION_OBJECT
+}

@@ -8,7 +8,7 @@ export interface IStackItem {
 }
 
 export interface ITabItem {
-    name : string,
+    name : "Collection" | "Shop" | "Fight",
     displayName : string,
     id : number,
     screen : FunctionComponent,

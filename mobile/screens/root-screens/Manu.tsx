@@ -1,9 +1,9 @@
-import { Text } from "react-native";
+import ManuTabs from "../../navigation/ManuTabsNavigation";
 
 export default function Manu(){        
     return (
-        <Text>
-            Manu
-        </Text>
+        <>
+            <ManuTabs/>
+        </>
     )
 }
