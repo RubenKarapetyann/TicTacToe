@@ -6,3 +6,11 @@ export interface IStackItem {
     id : number,
     screen : FunctionComponent
 }
+
+export interface ITabItem {
+    name : string,
+    displayName : string,
+    id : number,
+    screen : FunctionComponent,
+    icon : string
+}
