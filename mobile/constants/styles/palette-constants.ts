@@ -1,6 +1,6 @@
 const PALETTE = {
     primary : "#FF4343",
-    background : "#fffff",
+    background : "white",
     accent : "#FFBAOO",
     secondary : "#1B3364",
     text : "black",
