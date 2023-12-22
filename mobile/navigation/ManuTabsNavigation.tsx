@@ -3,6 +3,7 @@ import { ManuTabsParamList } from "../types/navigation/ManuTabsTypes"
 import { MANU_TABS_ARR, MANU_TABS_MAP } from "../constants/navigation/manu-tabs-constants"
 import { ITabItem } from "../types/navigation/global"
 import Ionicons from "react-native-vector-icons/MaterialCommunityIcons"
+import PALETTE from "../constants/styles/palette-constants"
 
 const Tabs = createBottomTabNavigator<ManuTabsParamList>()
 
@@ -15,7 +16,7 @@ export default function ManuTabs(){
                     const iconName:string = MANU_TABS_MAP[route.name].icon    
                     return <Ionicons name={iconName} size={iconSize} color={color} />
                 },
-                tabBarActiveTintColor: 'tomato',
+                tabBarActiveTintColor: PALETTE.primary,
                 tabBarInactiveTintColor: 'gray',
             })}>
             {MANU_TABS_ARR.map((tab:ITabItem)=>{

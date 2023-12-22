@@ -1,7 +1,7 @@
 import { FunctionComponent } from "react";
 
 export interface IStackItem {
-    name : "Manu" | "Game",
+    name : "Manu" | "Game" | "Login" | "Register",
     displayName : string,
     id : number,
     screen : FunctionComponent
