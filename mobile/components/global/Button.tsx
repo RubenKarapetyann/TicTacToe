@@ -5,7 +5,7 @@ import { useState } from "react"
 import Ionicons from "react-native-vector-icons/MaterialCommunityIcons"
 
 
-export default function Button({ text="", handle, form, icon }: ButtonProps){
+export default function Button({ text="", handle, icon }: ButtonProps){
     const [hold, setHold] = useState<boolean>(false)
 
     const focusHandle = ()=> setHold(true)

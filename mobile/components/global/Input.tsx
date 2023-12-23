@@ -3,14 +3,9 @@ import PALETTE from "../../constants/styles/palette-constants";
 import { InputProps } from "../../types/components/global";
 import { useState } from "react";
 
-export default function Input({ placeholder="", initialValue="" }: InputProps){
-    const [value, setValue] = useState<string>(initialValue)
+export default function Input({ placeholder="", value, changeHandle }: InputProps){
     const [focused, setFocused] = useState<boolean>(false)
-    
-    const changeHandle = (text: string)=>{
-        setValue(text)
-    }
-    
+        
     const focusHandle = ()=> setFocused(true)
     const blurHandle = ()=> setFocused(false)
 

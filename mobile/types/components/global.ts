@@ -1,11 +1,11 @@
 export type InputProps = {
     placeholder? : string,
-    initialValue? : string,
+    value : string,
+    changeHandle : (value: string)=> void
 }
 
 export type ButtonProps = {
     text : string,
     handle : ()=> void,
-    form? : string,
     icon? : string
 }

@@ -8,7 +8,9 @@ const Stack = createStackNavigator<RootStackParamList>()
 
 export default function RootStack(){
     return (
-        <Stack.Navigator initialRouteName={MANU}>
+        <Stack.Navigator initialRouteName={MANU} screenOptions={{
+            headerShown : false
+        }}>
             {STACK_ARR.map((stack:IStackItem)=>{
                 return (
                     <Stack.Screen

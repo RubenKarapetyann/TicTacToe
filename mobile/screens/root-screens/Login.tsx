@@ -1,9 +1,10 @@
-import { Text } from "react-native";
+import { View } from "react-native";
+import LoginForm from "../../components/form/LoginForm";
 
 export default function Login(){
     return (
-        <Text>
-            Login
-        </Text>
+        <View>
+            <LoginForm/>
+        </View>
     )
 }
