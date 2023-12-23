@@ -1,7 +1,7 @@
 const PALETTE = {
     primary : "#FF4343",
     background : "white",
-    accent : "#FFBAOO",
+    accent : "#FFBA00",
     secondary : "#1B3364",
     text : "black",
     border : "#32373b",
