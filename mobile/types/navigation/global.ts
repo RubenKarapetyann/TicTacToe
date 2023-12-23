@@ -4,7 +4,6 @@ export interface IStackItem {
     name : "Manu" | "Game" | "Login" | "Register",
     displayName : string,
     id : number,
-    screen : FunctionComponent<any>
 }
 
 export interface ITabItem {
