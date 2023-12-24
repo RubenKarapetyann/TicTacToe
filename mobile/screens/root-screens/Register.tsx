@@ -12,7 +12,7 @@ export default function Register({ navigation }: RegisterProps){
             <View>
                 <Text style={styles.titleText}>Register</Text>
             </View>
-            <RegisterForm/>
+            <RegisterForm navigate={goToLogin}/>
             <TouchableOpacity style={styles.loginButton} onPress={goToLogin}>
                 <Text>already have account? </Text>
                 <Text style={styles.loginText}>login!</Text>

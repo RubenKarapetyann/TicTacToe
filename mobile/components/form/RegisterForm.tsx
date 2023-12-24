@@ -2,8 +2,12 @@ import { StyleSheet, View } from "react-native"
 import Input from "../global/Input"
 import { useState } from "react"
 import Button from "../global/Button"
+import { apiCall } from "../../utils/api/api"
+import endpoints from "../../utils/api/endpoints"
+import { POST } from "../../constants/api/api-constants"
+import { Navigation } from "../../types/navigation/RootStackTypes"
 
-export default function RegisterForm(){
+export default function RegisterForm({ navigate }: Navigation){
     const [ values, setValues ] = useState({
         name : "",
         password : "",
@@ -14,8 +18,14 @@ export default function RegisterForm(){
     const passwordHandle = (password: string) => setValues(values=>({...values, password}))
     const repeatPasswordHandle = (password: string) => setValues(values=>({...values, repeatPassword: password}))
 
-    const submitHandle = ()=>{
-        console.log(values);
+    const submitHandle = async ()=>{
+        const result = await apiCall(POST, endpoints().reg, {
+            name : values.name,
+            password : values.password
+        })
+        if(result.access){
+            navigate()
+        }
     }
 
     return (
