@@ -20,7 +20,7 @@ app.use(cors())
 
 app.use(AUTH,authentication)
 
-app.get(TEST, passport.authenticate("jwt", {session : false}), async (req : Request,res : Response)=>{
+app.get(TEST, async (req : Request,res : Response)=>{
     const result = await pool.query("SELECT * FROM users")
     res.json({
         access : true,

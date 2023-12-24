@@ -2,7 +2,8 @@ export type InputProps = {
     placeholder? : string,
     value : string,
     changeHandle : (value: string)=> void,
-    type? : "password" | "text"
+    type? : "password" | "text",
+    color? : string
 }
 
 export type ButtonProps = {

@@ -10,12 +10,12 @@ router.post("/",async (req: Request, res: Response)=>{
     const user = await getUserBy("name", name)
 
     if(!user){
-        return res.status(404).json({access : false, message : "username is incorrect"})
+        return res.status(404).json({access : false, message : "username is incorrect", error : "name"})
     }
 
     const correctPassword = await compare(password, user.password)
     if(!correctPassword){
-        return res.status(401).json({access : false, message : "password is incorrect"})
+        return res.status(401).json({access : false, message : "password is incorrect", error : "password"})
     }
 
     const token = generateJwtToken(user.name, user.id)

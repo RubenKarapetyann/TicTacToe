@@ -3,7 +3,7 @@ import PALETTE from "../../constants/styles/palette-constants";
 import { InputProps } from "../../types/components/global";
 import { useState } from "react";
 
-export default function Input({ placeholder="", value, changeHandle, type="text" }: InputProps){
+export default function Input({ placeholder="", value, changeHandle, type="text", color=PALETTE.border }: InputProps){
     const [focused, setFocused] = useState<boolean>(false)
         
     const focusHandle = ()=> setFocused(true)
@@ -16,7 +16,10 @@ export default function Input({ placeholder="", value, changeHandle, type="text"
                 onFocus={focusHandle}
                 onBlur={blurHandle}
                 placeholder={placeholder} 
-                style={[styles.input, focused ? styles.focused : styles.static]}
+                style={[styles.input, focused ? styles.focused : styles.static, {
+                    borderBottomColor : color
+                }]}
+                placeholderTextColor={color}
                 value={value}
                 onChangeText={changeHandle}
             />
@@ -26,7 +29,6 @@ export default function Input({ placeholder="", value, changeHandle, type="text"
 
 const styles = StyleSheet.create({
     input : {
-        borderBottomColor : PALETTE.border,
         width : 300,
         height : 55
     },
