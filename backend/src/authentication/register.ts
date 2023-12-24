@@ -11,7 +11,8 @@ router.post("/",async (req: Request, res: Response)=>{
         if(user){
             return res.status(422).json({
                 access : false,
-                message : "username already used"
+                message : "username already used",
+                error : "name"
             })
         }
 

@@ -9,13 +9,14 @@ import { setJwtToken } from "../../utils/storage/jwt"
 import { Navigation } from "../../types/navigation/RootStackTypes"
 import PALETTE from "../../constants/styles/palette-constants"
 import { AuthResponseType } from "../../types/api/auth"
+import { ErrorsType } from "../../types/components/errors"
 
 export default function LoginForm({ navigate }: Navigation){
     const [ values, setValues ] = useState({
         name : "",
         password : ""
     })
-    const [errors, setErrors] = useState({
+    const [errors, setErrors] = useState<ErrorsType>({
         name : null,
         password : null
     })
@@ -50,14 +51,14 @@ export default function LoginForm({ navigate }: Navigation){
         <View style={styles.container}>
             <Input 
                 value={values.name} 
-                placeholder={errors.name ? errors.name : "name"} 
+                placeholder={errors.name || "name"} 
                 changeHandle={nameHandle} 
                 color={errors.name ? PALETTE.primary : PALETTE.border}
             />
             <Input 
                 value={values.password} 
                 type="password" 
-                placeholder={errors.password ? errors.password : "password"} 
+                placeholder={errors.password || "password"} 
                 changeHandle={passwordHandle} 
                 color={errors.password ? PALETTE.primary : PALETTE.border}
             />
