@@ -2,17 +2,18 @@ import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import LoginForm from "../../components/form/LoginForm";
 import { LoginProps } from "../../types/navigation/RootStackTypes";
 import PALETTE from "../../constants/styles/palette-constants";
-import { REGISTER } from "../../constants/navigation/root-stack-constants";
+import { MANU, REGISTER } from "../../constants/navigation/root-stack-constants";
 
 export default function Login({ navigation }: LoginProps){
     const goToRegister = ()=> navigation.navigate(REGISTER)
+    const goToManu = ()=> navigation.navigate(MANU)
 
     return (
         <View style={styles.container}>
             <View>
                 <Text style={styles.titleText}>Login</Text>
             </View>
-            <LoginForm/>
+            <LoginForm navigate={goToManu}/>
             <TouchableOpacity style={styles.registerButton} onPress={goToRegister}>
                 <Text>don't have account? </Text>
                 <Text style={styles.registerText}>create it!</Text>

@@ -14,6 +14,9 @@ export type LoginProps = StackScreenProps<RootStackParamList, "Login">
 export type RegisterProps = StackScreenProps<RootStackParamList, "Register">
 export type GameProps = StackScreenProps<RootStackParamList, "Game">
 
+export type Navigation = {
+    navigate : ()=> void
+}
 
 export interface IStackScreens {
     [MANU] : FunctionComponent<any>,

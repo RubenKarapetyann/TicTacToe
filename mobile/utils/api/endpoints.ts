@@ -1,5 +1,6 @@
 export default function endpoints( id? :string ){
     return {    
-        test : "test"
+        test : "test",
+        login : "auth/login"
     }
 }

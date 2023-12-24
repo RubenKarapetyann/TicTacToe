@@ -2,8 +2,13 @@ import { StyleSheet, View } from "react-native"
 import Input from "../global/Input"
 import { useState } from "react"
 import Button from "../global/Button"
+import { apiCall } from "../../utils/api/api"
+import endpoints from "../../utils/api/endpoints"
+import { POST } from "../../constants/api/api-constants"
+import { setJwtToken } from "../../utils/storage/jwt"
+import { Navigation } from "../../types/navigation/RootStackTypes"
 
-export default function LoginForm(){
+export default function LoginForm({ navigate }: Navigation){
     const [ values, setValues ] = useState({
         name : "",
         password : ""
@@ -12,8 +17,13 @@ export default function LoginForm(){
     const nameHandle = (name: string) => setValues(values=>({...values, name}))
     const passwordHandle = (password: string) => setValues(values=>({...values, password}))
 
-    const submitHandle = ()=>{
-        console.log(values);
+    const submitHandle = async ()=>{
+        const result = await apiCall(POST, endpoints().login,values)
+        setValues({name : "", password : ""})
+        if(result.access){
+            await setJwtToken(result.token)    
+            navigate()
+        }
     }
 
     return (
