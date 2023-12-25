@@ -3,4 +3,5 @@ export type AuthResponseType = {
     message : string,
     error? : "name" | "password",
     token? : string,
+    user? : object
 }
