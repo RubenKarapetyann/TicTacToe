@@ -8,7 +8,7 @@ export const generateJwtToken = (name: string, id: string)=> {
 
     const options = {
         name,
-        id
+        sub : id
     }
     return jwt.sign(options, secret)
 }

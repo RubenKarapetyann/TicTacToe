@@ -1,10 +1,12 @@
 import socket, { Socket } from "socket.io"
 import { Server } from "http"
-import { CONNECTION } from "../../constants/socket"
-
+import { CONNECTION, DISCONNECT } from "../../constants/socket"
+import { authentication } from "./authentication"
 
 export default {
     getIo : (server: Server)=>{
+        const search = []
+
         const io = new socket.Server(server, {
             cors : {
                 origin: "*",
@@ -12,8 +14,14 @@ export default {
             }
         })
 
+        io.use(authentication)
+
         io.on(CONNECTION,(socket: Socket)=>{
-            console.log("user connected")
+            console.log(socket.handshake.auth.user);            
+
+            socket.on(DISCONNECT, ()=>{
+                console.log("user disconnected")
+            })
         })
     }
 }
