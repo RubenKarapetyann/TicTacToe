@@ -4,7 +4,10 @@ import { getJwtAccessToken } from "../storage/jwt";
 
 export async function apiCall( method: Method, route: string, body? : Object, needToken?: boolean ){
     try{
-        const token = await getJwtAccessToken()        
+        const token = await getJwtAccessToken()  
+        if(needToken && !token){
+            return null
+        }      
         const response = await fetch(`${SERVER}/${route}`,{
             method,
             body : JSON.stringify(body),

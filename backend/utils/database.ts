@@ -18,3 +18,7 @@ export const addUser = async (name: string, password:string)=> {
     const hashedPassword = await hash(password.toString())
     return await query("INSERT INTO users(name, password, trophies) VALUES (?, ?, 0)", [name, hashedPassword])
 }
+
+export const addGame = async (id_1: string | number, id_2: string | number)=>{
+    return await query("INSERT INTO games(player1_id, player2_id) VALUES (?,?)", [id_1, id_2])
+}

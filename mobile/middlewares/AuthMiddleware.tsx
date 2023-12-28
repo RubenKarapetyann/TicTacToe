@@ -12,8 +12,8 @@ export default function AuthMiddleware({ children }: Children){
 
     useEffect(()=>{
         const getUser = async ()=> {
-            const result: AuthResponseType = await apiCall(GET, endpoints().authUser, undefined, true)
-            if(result.access && result.user){
+            const result: AuthResponseType = await apiCall(GET, endpoints().authUser, undefined, true)            
+            if(result && result.access && result.user){
                 auth?.setUser(result.user)
             }
             setVerified(true)

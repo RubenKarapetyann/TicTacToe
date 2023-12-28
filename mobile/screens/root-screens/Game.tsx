@@ -15,6 +15,8 @@ export default function Game(){
                     token
                 }
             })
+
+            socket.current.on("test", (data)=>console.log(data))
         }
 
         engine()

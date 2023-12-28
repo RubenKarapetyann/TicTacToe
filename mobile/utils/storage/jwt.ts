@@ -2,7 +2,7 @@ import { getItem, setItem } from "./storage";
 
 
 export const getJwtAccessToken = async ()=>{
-    return (await getItem("jwt")).access
+    return await getItem("jwt") && (await getItem("jwt")).access
 }
 
 export const setJwtToken = async (token: string)=>{
