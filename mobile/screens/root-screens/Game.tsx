@@ -1,11 +1,13 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Text } from "react-native";
 import io, { Socket } from "socket.io-client"
 import { SERVER } from "../../constants/api/api-constants";
 import { getJwtAccessToken } from "../../utils/storage/jwt";
+import Board from "../../components/game/Board";
 
 export default function Game(){
     const socket = useRef<Socket | null>(null)
+    const [matrix, setMatrix] = useState([])
 
     useEffect(()=>{
         const engine = async ()=>{
@@ -16,7 +18,7 @@ export default function Game(){
                 }
             })
 
-            socket.current.on("test", (data)=>console.log(data))
+            socket.current.on("test", (data)=>setMatrix(data.matrix))
         }
 
         engine()
@@ -29,7 +31,7 @@ export default function Game(){
 
     return (
         <Text>
-            Game
+            <Board matrix={matrix}/>
         </Text>
     )
 }
