@@ -1,4 +1,4 @@
-import { ADD_GAME, ADD_USER, SET_GAME_ID } from "../constants/database";
+import { ADD_GAME, ADD_USER, GET_GAME, SET_GAME_ID } from "../constants/database";
 import pool from "../database/pool"
 import { hash } from "./hash";
 import { RowDataPacket, ResultSetHeader } from "mysql2"
@@ -44,4 +44,12 @@ export const createNewGame = async (id_1: string | number, id_2: string | number
         await setGameIdToUser(id_1, result.insertId)
         await setGameIdToUser(id_2, result.insertId)
     }
+}
+
+export const getMatrix = async (id: number | string)=>{
+    const game = await query(GET_GAME,[id])
+    if(!game){
+        throw Error("game is not found")
+    }
+    return game.matrix
 }

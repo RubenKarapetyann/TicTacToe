@@ -4,6 +4,7 @@ import io, { Socket } from "socket.io-client"
 import { SERVER } from "../../constants/api/api-constants";
 import { getJwtAccessToken } from "../../utils/storage/jwt";
 import Board from "../../components/game/Board";
+import { GET_MATRIX } from "../../../global-constants"
 
 export default function Game(){
     const socket = useRef<Socket | null>(null)
@@ -18,7 +19,7 @@ export default function Game(){
                 }
             })
 
-            socket.current.on("test", (data)=>setMatrix(data.matrix))
+            socket.current.on(GET_MATRIX, (data)=>setMatrix(data.matrix))
         }
 
         engine()
@@ -29,9 +30,13 @@ export default function Game(){
         }
     },[])
 
+    const moveHandle = (row: number, column: number)=>{
+        console.log(row, column);
+    }
+
     return (
         <Text>
-            <Board matrix={matrix}/>
+            <Board matrix={matrix} moveHandle={moveHandle}/>
         </Text>
     )
 }
