@@ -2,8 +2,10 @@ import socket, { Socket } from "socket.io"
 import { Server } from "http"
 import { CONNECTION, DISCONNECT } from "../../constants/socket"
 import { authentication } from "./authentication"
-import { createNewGame } from "../../utils/database"
+import { createNewGame, getMatrix } from "../../utils/database"
 import Player from "../../classes/Player"
+import { getEmptyMatrix } from "../../utils/game"
+import { GET_MATRIX } from "../../../global-constants"
 
 export default {
     getIo : (server: Server)=>{
@@ -23,7 +25,13 @@ export default {
             console.log(firstPlayer.name + " connected");
 
             if(firstPlayer.game_id){
-                return socket.emit("test", {message : "in game"})
+                const sendMatrix = async ()=>{
+                    if(firstPlayer.game_id){
+                        const matrix = await getMatrix(firstPlayer.game_id)
+                        socket.emit(GET_MATRIX, {message : "in game", matrix})
+                    }
+                }
+                return sendMatrix()
             }
 
             if(search.length){
