@@ -1,5 +1,6 @@
 import { ADD_GAME, ADD_USER, GET_GAME, SET_GAME_ID } from "../constants/database";
 import pool from "../database/pool"
+import { getEmptyMatrix } from "./game";
 import { hash } from "./hash";
 import { RowDataPacket, ResultSetHeader } from "mysql2"
 
@@ -30,7 +31,8 @@ export const addUser = async (name: string, password:string)=> {
 }
 
 export const addGame = async (id_1: string | number, id_2: string | number)=>{
-    return await query(ADD_GAME, [id_1, id_2])
+    const matrix: string = JSON.stringify(getEmptyMatrix(3))   
+    return await query(ADD_GAME, [id_1, id_2, matrix])
 }
 
 export const setGameIdToUser = async (id: string | number, gameId: string | number)=>{
@@ -38,11 +40,13 @@ export const setGameIdToUser = async (id: string | number, gameId: string | numb
 }
 
 export const createNewGame = async (id_1: string | number, id_2: string | number)=>{
-    const game = await queryWithInfo(ADD_GAME, [id_1, id_2])
+    const matrix: string = JSON.stringify(getEmptyMatrix(3))   
+    const game = await queryWithInfo(ADD_GAME, [id_1, id_2, matrix])
     if(game){
         const result = game[0]
         await setGameIdToUser(id_1, result.insertId)
         await setGameIdToUser(id_2, result.insertId)
+        return result.insertId
     }
 }
 
