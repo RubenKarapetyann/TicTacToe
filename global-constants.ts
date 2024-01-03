@@ -1,3 +1,5 @@
 export const GET_MATRIX = "matrix:get"
 export const GAME_SEARCHING = "game:searching"
 export const GAME_FOUND = "game:found"
+export const GAME_MOVE = "game:move"
+export const GAME_GET = "game:get"

@@ -1,18 +1,20 @@
 import { Server, Socket } from "socket.io"
 import Player from "./Player"
-import { GAME_SEARCHING } from "../../global-constants"
 import { DefaultEventsMap } from "socket.io/dist/typed-events"
+import { Matrix } from "../types/game"
 
 export default class Game {
     id: string | number
-    matrix: Array<Array<number>>
+    matrix: Matrix
     round: number
     move: number
     player1: Player
     player2: Player
-    socket: Server<DefaultEventsMap, DefaultEventsMap, DefaultEventsMap, any>
+    io: Server<DefaultEventsMap, DefaultEventsMap, DefaultEventsMap, any>
+    socket: Socket
+    
 
-    constructor(id: string | number, matrix: Array<Array<number>>, round: number, move: number, player1: Player,player2: Player, socket: Server<DefaultEventsMap, DefaultEventsMap, DefaultEventsMap, any>){
+    constructor(id: string | number, matrix: Matrix, round: number, move: number, player1: Player,player2: Player, io: Server<DefaultEventsMap, DefaultEventsMap, DefaultEventsMap, any>, socket: Socket){
         this.id = id
         this.matrix = matrix
         this.round = round
@@ -20,9 +22,10 @@ export default class Game {
         this.player1 = player1
         this.player2 = player2
         this.socket = socket
+        this.io = io
     }
 
     start(){
-        this.socket.in(this.id.toString()).emit(GAME_SEARCHING)
+
     }
 }

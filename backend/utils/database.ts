@@ -1,5 +1,6 @@
-import { ADD_GAME, ADD_USER, GET_GAME, SET_GAME_ID } from "../constants/database";
+import { ADD_GAME, ADD_USER, GET_GAME, SET_GAME_ID, UPDATE_GAME } from "../constants/database";
 import pool from "../database/pool"
+import { Matrix } from "../types/game";
 import { getEmptyMatrix } from "./game";
 import { hash } from "./hash";
 import { RowDataPacket, ResultSetHeader } from "mysql2"
@@ -53,7 +54,19 @@ export const createNewGame = async (id_1: string | number, id_2: string | number
 export const getMatrix = async (id: number | string)=>{
     const game = await query(GET_GAME,[id])
     if(!game){
-        throw Error("game is not found")
+        throw new Error("game is not found")
     }
     return game.matrix
+}
+
+export const getGame = async (id:number | string)=>{
+    const game = await query(GET_GAME, [id])
+    if(!game){
+        throw new Error("game is not found")
+    }
+    return game
+}
+
+export const updateGame = async (id: number | string, matrix: Matrix)=>{
+    return await query(UPDATE_GAME,[JSON.stringify(matrix), id])
 }
