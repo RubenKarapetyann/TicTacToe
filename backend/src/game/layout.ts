@@ -5,14 +5,14 @@ import { authentication } from "./authentication"
 import { createNewGame, getGame, getMatrix, updateGame } from "../../utils/database"
 import Player from "../../classes/Player"
 import { GAME_FOUND, GAME_GET, GAME_MOVE, GAME_SEARCHING, GET_MATRIX } from "../../../global-constants"
-import { getEmptyMatrix } from "../../utils/game"
+import { checkGameState, getEmptyMatrix } from "../../utils/game"
 import Game from "../../classes/Game"
 import { GameMove } from "../../types/socket"
 import { X } from "../../constants/game"
 
 export default {
     getIo : (server: Server)=>{
-        const search: (Player & { socketId : string | number })[] = []
+        let search: (Player & { socketId : string | number })[] = []
 
         const io = new socket.Server(server, {
             cors : {
@@ -28,12 +28,13 @@ export default {
             console.log(firstPlayer.name + " connected");
 
             socket.on(GAME_MOVE, (data)=>{
-                const gameMoves: GameMove = data.game
+                const gameMoves: GameMove = data.game                
                 const moveHandle = async ()=>{
                     if(firstPlayer.game_id){
                         const game = await getGame(firstPlayer.game_id)
                         const matrix = JSON.parse(game.matrix)
                         matrix[gameMoves.row][gameMoves.column] = X
+                        console.log(checkGameState(matrix));
                         await updateGame(firstPlayer.game_id, matrix)
                         io.to(firstPlayer.game_id.toString()).emit(GAME_MOVE, { matrix })
                     }
@@ -91,6 +92,7 @@ export default {
 
             socket.on(DISCONNECT, ()=>{
                 console.log("user disconnected")
+                search = search.filter(player=>player.id !== firstPlayer.id)
                 if(firstPlayer.game_id){
                     socket.leave(firstPlayer.game_id.toString())
                 }
